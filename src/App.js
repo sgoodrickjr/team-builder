@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import TeamForm from './components/TeamForm';
 import TeamMembers from './components/TeamMembers';
@@ -23,6 +22,7 @@ function App() {
   return (
     <div className="App">
       <TeamForm team = {teamList} addTeamMember = {addTeamMember} setTeamList = {setTeamList}/>
+      <TeamMembers team = {teamList}/>
     </div>
   );
 }

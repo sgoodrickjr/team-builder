@@ -1,46 +1,56 @@
 import React, { useState } from 'react'
 
 
+
 const TeamForm = props => {
 
-      const handleChanges = event => {
-        setTeamList({ ...team, [event.target.name]: event.target.value });
+    const [memberAttributes, setMemberAttributes] = useState([
+        {
+          id: Date.now(), 
+          name: "",
+          email: "",
+          role: ""
+        }
+      ]);
+
+      const changeHandler = event => {
+        setMemberAttributes({ ...memberAttributes, [event.target.name]: event.target.value });
       };
 
-      const submitForm = event => {
+      const submitHandler = event => {
         event.preventDefault();
-        props.addTeamMember(team);
-        setTeamList({ email: "", name: "", role: ""});
+        props.addTeamMember(memberAttributes);
+        setMemberAttributes({ email: "", name: "", role: ""});
       };
 
     return (
-        <form onSubmit={submitForm}>
+        <form onSubmit={submitHandler}>
             <label htmlFor="email">Email</label>
             <input
-                onChange={handleChanges}
+                onChange={changeHandler}
                 id="email"
                 type="text"
                 name="email"
                 placeholder="Email"
-                value={team.email}
+                value={memberAttributes.email}
             />
             <label htmlFor="name">Name</label>
             <input
-                onChange={handleChanges}
-                id="email"
+                onChange={changeHandler}
+                id="name"
                 type="text"
                 name="name"
                 placeholder="Name"
-                value={team.name}
+                value={memberAttributes.name}
             />
             <label htmlFor="role">Role</label>
             <input
-                onChange={handleChanges}
-                id="email"
+                onChange={changeHandler}
+                id="role"
                 type="text"
                 name="role"
                 placeholder="Role"
-                value={team.role}
+                value={memberAttributes.role}
             />
             <button type="submit">Click To Submit!</button>
         </form>
